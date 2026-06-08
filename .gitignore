@@ -4,6 +4,7 @@ node_modules/
 # production builds
 dist/
 build/
+docs/
 
 # local env
 .env
@@ -21,3 +22,5 @@ pnpm-debug.log*
 .thumbnail
 .idea/
 .vscode/
+
+

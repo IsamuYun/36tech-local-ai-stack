@@ -39,8 +39,8 @@ function App() {
   return (
     <>
       <main className="page">
-        <TopBarSection />
         <HeroSection />
+        <TopBarSection />
         <StackSection />
         <RulesSection />
         <FooterSection />
