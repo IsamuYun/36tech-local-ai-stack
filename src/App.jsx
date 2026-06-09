@@ -5,7 +5,17 @@ import RulesSection from './sections/RulesSection.jsx';
 import StackSection from './sections/StackSection.jsx';
 import NavBarSection from './sections/NavBarSection.jsx';
 
-function App() {
+function HomePage() {
+  return (
+    <main className="page page-home">
+      <HeroSection />
+      <NavBarSection />
+      <FooterSection />
+    </main>
+  );
+}
+
+function LocalAiPage() {
   useEffect(() => {
     const disposers = [];
 
@@ -37,16 +47,34 @@ function App() {
   }, []);
 
   return (
-    <>
-      <main className="page">
-        <HeroSection />
-        <NavBarSection />
-        <StackSection />
-        <RulesSection />
-        <FooterSection />
-      </main>
-    </>
+    <main className="page page-local-ai">
+      <HeroSection />
+      <NavBarSection />
+      <StackSection />
+      <RulesSection />
+      <FooterSection />
+    </main>
   );
+}
+
+function getCurrentPage() {
+  const path = window.location.pathname.replace(/\/$/, '') || '/';
+
+  if (path === '/local-ai') {
+    return 'local-ai';
+  }
+
+  return 'home';
+}
+
+function App() {
+  const currentPage = getCurrentPage();
+
+  if (currentPage === 'local-ai') {
+    return <LocalAiPage />;
+  }
+
+  return <HomePage />;
 }
 
 export default App;

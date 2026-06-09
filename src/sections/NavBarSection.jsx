@@ -1,9 +1,9 @@
 import React from 'react';
 
 const navItems = [
-  { label: 'The Stack', href: '#stack' },
-  { label: 'Models', href: '#' },
-  { label: 'Runtime', href: '#' },
+  { label: 'Home', href: '/' },
+  { label: 'Local AI', href: '/local-ai' },
+  { label: 'The Stack', href: '/local-ai#stack' },
   { label: 'Docs', href: '#' },
 ];
 
@@ -27,7 +27,7 @@ function NavItem({ item }) {
   );
 }
 
-export default function TopBarSection() {
+export default function NavBarSection() {
   return (
     <header className="topbar">
       <a className="brand" href="/" aria-label="localstack.dev home">
@@ -43,7 +43,7 @@ export default function TopBarSection() {
             <NavItem key={item.label} item={item} />
           ))}
         </ul>
-        <a className="topnav-cta" href="#">
+        <a className="topnav-cta" href="/local-ai#stack">
           Get started →
         </a>
       </nav>
