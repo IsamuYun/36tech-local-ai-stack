@@ -3,7 +3,7 @@ import FooterSection from './sections/FooterSection.jsx';
 import HeroSection from './sections/HeroSection.jsx';
 import RulesSection from './sections/RulesSection.jsx';
 import StackSection from './sections/StackSection.jsx';
-import TopBarSection from './sections/TopBarSection.jsx';
+import NavBarSection from './sections/NavBarSection.jsx';
 
 function App() {
   useEffect(() => {
@@ -40,7 +40,7 @@ function App() {
     <>
       <main className="page">
         <HeroSection />
-        <TopBarSection />
+        <NavBarSection />
         <StackSection />
         <RulesSection />
         <FooterSection />
