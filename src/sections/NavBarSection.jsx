@@ -1,26 +1,21 @@
 import React from 'react';
+import { FileText, Home, Layers3, Cpu } from 'lucide-react';
+import faviconIcon from '../assets/icon/favicon.ico';
 
 const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'Local AI', href: '/local-ai' },
-  { label: 'The Stack', href: '/local-ai#stack' },
-  { label: 'Docs', href: '#' },
+  { label: 'Home', href: '/', Icon: Home },
+  { label: 'Local AI', href: '/local-ai', Icon: Cpu },
+  { label: 'The Stack', href: '/local-ai#stack', Icon: Layers3 },
+  { label: 'Docs', href: '#', Icon: FileText },
 ];
 
-function BrandMark() {
-  return (
-    <span className="brand-mark" aria-hidden="true">
-      <span />
-      <span />
-      <span />
-    </span>
-  );
-}
-
 function NavItem({ item }) {
+  const Icon = item.Icon;
+
   return (
     <li>
       <a className="topnav-link" href={item.href}>
+        <Icon className="topnav-icon" aria-hidden="true" />
         {item.label}
       </a>
     </li>
@@ -30,10 +25,10 @@ function NavItem({ item }) {
 export default function NavBarSection() {
   return (
     <header className="topbar">
-      <a className="brand" href="/" aria-label="localstack.dev home">
-        <BrandMark />
+      <a className="brand" href="/" aria-label="36 tech studio home">
+        <img className="brand-icon" src={faviconIcon} alt="" aria-hidden="true" />
         <span className="brand-name">
-          localstack<span className="ital">.dev</span>
+          AI Tools by Karl
         </span>
       </a>
 
@@ -43,8 +38,11 @@ export default function NavBarSection() {
             <NavItem key={item.label} item={item} />
           ))}
         </ul>
-        <a className="topnav-cta" href="/local-ai#stack">
-          Get started →
+        <a className="topnav-cta" href="/cn" aria-label="切换到中文页面">
+          <span className="topnav-flag" aria-hidden="true">
+            🇨🇳
+          </span>
+          <span>中</span>
         </a>
       </nav>
     </header>

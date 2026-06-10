@@ -4,9 +4,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['Cormorant Garamond', 'Noto Serif SC', 'serif'],
-        text: ['Manrope', 'Noto Sans SC', 'PingFang SC', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'Menlo', 'monospace']
+        display: ['Inter', 'Noto Sans SC', 'PingFang SC', 'system-ui', 'sans-serif'],
+        text: ['Inter', 'Noto Sans SC', 'PingFang SC', 'system-ui', 'sans-serif'],
+        mono: ['Inter', 'Noto Sans SC', 'PingFang SC', 'system-ui', 'sans-serif']
       },
       colors: {
         ink: '#1B1320',

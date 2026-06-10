@@ -1,0 +1,287 @@
+import React, { useEffect, useRef, useState } from 'react';
+
+const marqueeItems = [
+  'Prompt systems',
+  'Evaluation loops',
+  'Local-first workflows',
+  'Small-team automation',
+  'Interface craft',
+];
+
+const timelineItems = [
+  {
+    stage: 'Stage 01',
+    title: 'Start logging repeatable workflows',
+    description:
+      'Break recurring steps in writing, research, and code review into reusable tasks. Use them privately first, then write down the failure cases.',
+    status: 'Research',
+  },
+  {
+    stage: 'Stage 02',
+    title: 'Ship the first user-facing AI assistant',
+    description:
+      'The goal is not to generate more content. It is to make inputs, judgment, and revision paths visible so users can reduce uncertainty before handing work off.',
+    status: 'Prototype',
+  },
+  {
+    stage: 'Stage 03',
+    title: 'Build evaluation and version history into the product',
+    description:
+      'Every prompt, model, and interface change is paired with comparison samples. Readers see the tradeoffs, not only the launch notes.',
+    status: 'Evaluation',
+  },
+  {
+    stage: 'Now',
+    title: 'Keep refining toolchains for small teams',
+    description:
+      'Current focus: local file context, collaborative review, long-task recovery, and making AI tools less interruptive and more useful in daily work.',
+    status: 'Shipping',
+  },
+];
+
+const mentions = [
+  {
+    title: 'Independent builder notes',
+    description:
+      'A running breakdown of the full path from idea and prototype to pricing and maintenance, written for people building practical AI tools.',
+  },
+  {
+    title: 'User feedback',
+    description:
+      '"It did not make the decision for me. It showed me exactly what I needed to check, which was more useful than a polished answer."',
+  },
+  {
+    title: 'Media mentions placeholder',
+    description:
+      'Reserved for real media, podcast, or community references. No fabricated logo walls or inflated numbers before sources exist.',
+  },
+];
+
+function Reveal({ as: Component = 'div', className = '', children, ...props }) {
+  return (
+    <Component className={`home-ai-reveal ${className}`.trim()} {...props}>
+      {children}
+    </Component>
+  );
+}
+
+function AiToolsIntro() {
+  return (
+    <section className="home-ai-section home-ai-hero" id="ai-tools-top">
+      <div className="home-ai-container home-ai-hero-split">
+        <Reveal className="home-ai-hero-copy">
+          <p className="home-ai-eyebrow">Independent AI Toolmaker · Weekly Field Notes</p>
+          <h2>Build AI tools that feel like reliable workbenches.</h2>
+          <p className="home-ai-lead">
+            I independently design, build, and operate AI tools for creators and small teams. This page shares real build notes, product decisions, and a lightweight chatbot prototype.
+          </p>
+          <div className="home-ai-hero-cta">
+            <a className="home-ai-btn home-ai-btn-primary" href="#ai-tools-chatbot">
+              Try the chatbot
+            </a>
+            <a className="home-ai-btn home-ai-btn-secondary home-ai-btn-arrow" href="#ai-tools-timeline">
+              View the builder timeline
+            </a>
+          </div>
+          <div className="home-ai-editorial-rule" aria-hidden="true" />
+        </Reveal>
+
+        <Reveal className="home-ai-hero-visual" aria-label="Magazine-style cover visual for an independent AI toolmaker">
+          <div className="home-ai-cover-card">
+            <div className="home-ai-cover-top">
+              <span>ISSUE 01</span>
+              <span>BUILDING IN PUBLIC</span>
+            </div>
+            <div className="home-ai-orbit" aria-hidden="true" />
+            <div className="home-ai-mini-note">This week: from a reusable prompt to a product interface that can actually ship.</div>
+            <div className="home-ai-cover-title" aria-hidden="true">
+              <span>AI</span>
+              <span>TOOLS</span>
+              <span>NOTES</span>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function AiToolsMarquee() {
+  const items = [...marqueeItems, ...marqueeItems];
+
+  return (
+    <div className="home-ai-marquee" aria-hidden="true">
+      <div className="home-ai-marquee-track">
+        {items.map((item, index) => (
+          <span key={`${item}-${index}`}>{item}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AiToolsTimeline() {
+  return (
+    <section className="home-ai-section" id="ai-tools-timeline">
+      <div className="home-ai-container">
+        <Reveal className="home-ai-section-heading">
+          <p className="home-ai-eyebrow">Timeline</p>
+          <h2>From side scripts to AI products teams can trust.</h2>
+          <p className="home-ai-lead">
+            The timeline carries the personal brand without inflated promises. It shows how problems, prototypes, feedback, and releases connect.
+          </p>
+        </Reveal>
+
+        <div className="home-ai-timeline">
+          {timelineItems.map((item) => (
+            <Reveal as="article" className="home-ai-log-row" key={item.stage}>
+              <span className="home-ai-meta home-ai-num">{item.stage}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+              <span className="home-ai-pull home-ai-meta">{item.status}</span>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AiToolsMentions() {
+  return (
+    <section className="home-ai-section" id="ai-tools-mentions">
+      <div className="home-ai-container home-ai-quote-grid">
+        <Reveal className="home-ai-quote-card">
+          <div>
+            <div className="home-ai-quote-mark" aria-hidden="true">
+              "
+            </div>
+            <blockquote>The most compelling part is not the technical flash. It is putting AI back into the rhythm of real work.</blockquote>
+          </div>
+          <p className="home-ai-quote-author">- Early user feedback, private beta notes</p>
+        </Reveal>
+
+        <div className="home-ai-mention-list">
+          {mentions.map((mention) => (
+            <Reveal as="article" className="home-ai-mention" key={mention.title}>
+              <strong>{mention.title}</strong>
+              <p>{mention.description}</p>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AiToolsChatbot() {
+  const [question, setQuestion] = useState('');
+  const [result, setResult] = useState(
+    'Ask a workflow, prompt, or product question. The generated result will appear here.',
+  );
+  const [message, setMessage] = useState({ state: '', text: '' });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const trimmedQuestion = question.trim();
+
+    if (!trimmedQuestion) {
+      setMessage({ state: 'error', text: 'Enter a question before submitting.' });
+      return;
+    }
+
+    setResult(
+      [
+        `Question: ${trimmedQuestion}`,
+        'Result:',
+        'Start by naming the user decision this tool should support. Then define the input context, the expected output shape, and one failure case to evaluate before shipping.',
+      ].join('\n\n'),
+    );
+    setMessage({ state: 'success', text: 'Result generated locally.' });
+    setQuestion('');
+  };
+
+  return (
+    <section className="home-ai-section" id="ai-tools-chatbot">
+      <div className="home-ai-container">
+        <Reveal className="home-ai-chatbot-panel">
+          <div className="home-ai-chatbot-grid">
+            <article className="home-ai-chatbot-result" aria-label="Chatbot result">
+              <span className="home-ai-meta home-ai-num">RESULT</span>
+              <div className="home-ai-chatbot-output" aria-live="polite">
+                {result.split('\n').map((line, index) => (
+                  <p key={`${line}-${index}`}>{line || '\u00a0'}</p>
+                ))}
+              </div>
+            </article>
+
+            <form className="home-ai-chatbot-form" noValidate onSubmit={handleSubmit}>
+              <div className="home-ai-field">
+                <label htmlFor="ai-tools-question">Question</label>
+                <textarea
+                  className="home-ai-input home-ai-textarea"
+                  id="ai-tools-question"
+                  name="question"
+                  placeholder="How should I evaluate a new AI workflow?"
+                  required
+                  value={question}
+                  onChange={(event) => setQuestion(event.target.value)}
+                />
+              </div>
+              <button className="home-ai-btn home-ai-btn-primary" type="submit">
+                Submit
+              </button>
+              <p className="home-ai-form-message" data-state={message.state} aria-live="polite">
+                {message.text}
+              </p>
+            </form>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export default function AiToolsSection() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const root = sectionRef.current;
+    if (!root) return undefined;
+
+    const revealItems = Array.from(root.querySelectorAll('.home-ai-reveal'));
+
+    if (!('IntersectionObserver' in window)) {
+      revealItems.forEach((item) => item.classList.add('is-visible'));
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.16 },
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section className="home-ai" ref={sectionRef} aria-label="AI tools field notes">
+      <AiToolsIntro />
+      <AiToolsMarquee />
+      <AiToolsTimeline />
+      <AiToolsMentions />
+      <AiToolsChatbot />
+    </section>
+  );
+}

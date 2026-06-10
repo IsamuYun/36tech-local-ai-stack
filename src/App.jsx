@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import FooterSection from './sections/FooterSection.jsx';
 import HeroSection from './sections/HeroSection.jsx';
+import AiToolsSection from './sections/home/AiToolsSection.jsx';
+import CnAiToolsSection from './sections/cn/AiToolsSection.jsx';
 import RulesSection from './sections/RulesSection.jsx';
 import StackSection from './sections/StackSection.jsx';
 import NavBarSection from './sections/NavBarSection.jsx';
@@ -10,6 +12,18 @@ function HomePage() {
     <main className="page page-home">
       <HeroSection />
       <NavBarSection />
+      <AiToolsSection />
+      <FooterSection />
+    </main>
+  );
+}
+
+function CnHomePage() {
+  return (
+    <main className="page page-home page-home-cn">
+      <HeroSection />
+      <NavBarSection />
+      <CnAiToolsSection />
       <FooterSection />
     </main>
   );
@@ -60,6 +74,10 @@ function LocalAiPage() {
 function getCurrentPage() {
   const path = window.location.pathname.replace(/\/$/, '') || '/';
 
+  if (path === '/cn') {
+    return 'cn';
+  }
+
   if (path === '/local-ai') {
     return 'local-ai';
   }
@@ -72,6 +90,10 @@ function App() {
 
   if (currentPage === 'local-ai') {
     return <LocalAiPage />;
+  }
+
+  if (currentPage === 'cn') {
+    return <CnHomePage />;
   }
 
   return <HomePage />;
