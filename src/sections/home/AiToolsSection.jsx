@@ -1,5 +1,33 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import intro1 from '../../assets/image/intro/intro-1.jpg';
+import intro2 from '../../assets/image/intro/intro-2.jpg';
+import intro3 from '../../assets/image/intro/intro-3.jpg';
+import intro4 from '../../assets/image/intro/intro-4.jpg';
+
+const introGallery = [
+  {
+    image: intro1,
+    title: 'Workflows',
+    description: 'Repeatable steps captured as reusable tasks.',
+  },
+  {
+    image: intro2,
+    title: 'Prototypes',
+    description: 'First user-facing assistants, shipped fast.',
+  },
+  {
+    image: intro3,
+    title: 'Evaluation',
+    description: 'Comparison samples paired with every change.',
+  },
+  {
+    image: intro4,
+    title: 'Shipping',
+    description: 'Refined toolchains for small teams.',
+  },
+];
+
 const marqueeItems = [
   'Prompt systems',
   'Evaluation loops',
@@ -66,40 +94,75 @@ function Reveal({ as: Component = 'div', className = '', children, ...props }) {
 }
 
 function AiToolsIntro() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return undefined;
+
+    const mediaQuery = window.matchMedia('(max-width: 720px)');
+    const update = () => setIsMobile(mediaQuery.matches);
+
+    update();
+    mediaQuery.addEventListener('change', update);
+
+    return () => mediaQuery.removeEventListener('change', update);
+  }, []);
+
+  useEffect(() => {
+    // On mobile the accordion and auto-rotation are disabled.
+    if (isPaused || isMobile) return undefined;
+
+    const intervalId = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % introGallery.length);
+    }, 6000);
+
+    return () => clearInterval(intervalId);
+  }, [isPaused, isMobile]);
+
+  const activeItem = introGallery[activeIndex];
+
   return (
     <section className="home-ai-section home-ai-hero" id="ai-tools-top">
       <div className="home-ai-container home-ai-hero-split">
-        <Reveal className="home-ai-hero-copy">
+        <Reveal className="home-ai-hero-visual" aria-label="Image gallery of independent AI toolmaking">
           <p className="home-ai-eyebrow">Independent AI Toolmaker · Weekly Field Notes</p>
-          <h2>Build AI tools that feel like reliable workbenches.</h2>
-          <p className="home-ai-lead">
-            I independently design, build, and operate AI tools for creators and small teams. This page shares real build notes, product decisions, and a lightweight chatbot prototype.
-          </p>
-          <div className="home-ai-hero-cta">
-            <a className="home-ai-btn home-ai-btn-primary" href="#ai-tools-chatbot">
-              Try the chatbot
-            </a>
-            <a className="home-ai-btn home-ai-btn-secondary home-ai-btn-arrow" href="#ai-tools-timeline">
-              View the builder timeline
-            </a>
-          </div>
-          <div className="home-ai-editorial-rule" aria-hidden="true" />
-        </Reveal>
+          <div className="home-ai-accordion-stage">
+            <div
+              className="home-ai-accordion"
+              onMouseEnter={() => !isMobile && setIsPaused(true)}
+              onMouseLeave={() => !isMobile && setIsPaused(false)}
+            >
+              <ul>
+                {introGallery.map((item, index) => (
+                  <li
+                    key={item.title}
+                    className={index === activeIndex ? 'is-active' : ''}
+                    style={{ backgroundImage: `url(${item.image})` }}
+                    onMouseEnter={() => !isMobile && setActiveIndex(index)}
+                  >
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-        <Reveal className="home-ai-hero-visual" aria-label="Magazine-style cover visual for an independent AI toolmaker">
-          <div className="home-ai-cover-card">
-            <div className="home-ai-cover-top">
-              <span>ISSUE 01</span>
-              <span>BUILDING IN PUBLIC</span>
-            </div>
-            <div className="home-ai-orbit" aria-hidden="true" />
-            <div className="home-ai-mini-note">This week: from a reusable prompt to a product interface that can actually ship.</div>
-            <div className="home-ai-cover-title" aria-hidden="true">
-              <span>AI</span>
-              <span>TOOLS</span>
-              <span>NOTES</span>
+            <div className="home-ai-intro-active" aria-live="polite">
+              <h4 key={`${activeItem.title}-title`}>{activeItem.title}</h4>
+              <p key={`${activeItem.title}-desc`}>{activeItem.description}</p>
             </div>
           </div>
+        </Reveal>
+      </div>
+
+      <div className="home-ai-container">
+        <Reveal className="home-ai-hero-cta home-ai-hero-cta-row">
+          <a className="home-ai-btn home-ai-btn-primary" href="#ai-tools-chatbot">
+            Try the chatbot
+          </a>
+          <a className="home-ai-btn home-ai-btn-secondary home-ai-btn-arrow" href="#ai-tools-timeline">
+            View the builder timeline
+          </a>
         </Reveal>
       </div>
     </section>
@@ -279,9 +342,10 @@ export default function AiToolsSection() {
     <section className="home-ai" ref={sectionRef} aria-label="AI tools field notes">
       <AiToolsIntro />
       <AiToolsMarquee />
+      <AiToolsChatbot />
       <AiToolsTimeline />
       <AiToolsMentions />
-      <AiToolsChatbot />
+      
     </section>
   );
 }

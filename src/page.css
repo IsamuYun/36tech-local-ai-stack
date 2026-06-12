@@ -54,10 +54,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 56px;
+    padding-top: 36px;
     padding-bottom: 28px;
-    border-bottom: 1px solid var(--rule);
-    margin-bottom: 64px;
+    //border-bottom: 1px solid var(--rule);
+    //margin-bottom: 64px;
   }
   .brand {
     display: flex;
@@ -373,7 +373,7 @@
     font-family: var(--home-ai-font-body);
     font-size: var(--home-ai-text-base);
     line-height: 1.5;
-    margin-block: 80px;
+    //margin-block: 80px;
     margin-inline: calc(50% - 50vw);
     overflow: hidden;
     text-rendering: optimizeLegibility;
@@ -419,6 +419,10 @@
     padding-inline: var(--home-ai-gutter);
   }
 
+  .home-ai-hero .home-ai-container {
+    max-width: 1360px;
+  }
+
   .home-ai-section {
     padding-block: clamp(32px, 7vw, 80px);
   }
@@ -428,21 +432,22 @@
   }
 
   .home-ai-hero {
-    overflow: clip;
-    padding-block: clamp(76px, 10vw, 132px);
+    overflow: visible;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    margin-top: 32px;
+    margin-bottom: 32px;
   }
 
   .home-ai-hero-split {
-    display: grid;
-    grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
-    gap: clamp(var(--home-ai-space-8), 6vw, var(--home-ai-space-20));
-    align-items: center;
+    display: block;
   }
 
   .home-ai-hero-copy {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    justify-content: center;
   }
 
   .home-ai-hero-copy h2 {
@@ -489,6 +494,11 @@
     flex-wrap: wrap;
     gap: var(--home-ai-space-3);
     margin-top: var(--home-ai-space-8);
+  }
+
+  .home-ai-hero-cta-row {
+    margin-top: var(--home-ai-space-12);
+    justify-content: center;
   }
 
   .home-ai-btn {
@@ -545,7 +555,7 @@
   }
 
   .home-ai-editorial-rule {
-    width: min(180px, 40vw);
+    width: min(240px, 60vw);
     height: 1px;
     margin-top: var(--home-ai-space-8);
     background: var(--home-ai-fg);
@@ -556,6 +566,174 @@
   .home-ai-hero-visual {
     display: grid;
     gap: var(--home-ai-space-4);
+  }
+
+  /* ============================================================
+     Intro accordion gallery
+     ============================================================ */
+  .home-ai-accordion-stage {
+    position: relative;
+    width: 1200px;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .home-ai-accordion {
+    width: 100%;
+    height: 360px;
+    overflow: hidden;
+    border: 1px solid var(--home-ai-border);
+    border-radius: var(--home-ai-radius-md);
+    box-shadow: var(--home-ai-shadow-ring);
+  }
+
+  .home-ai-accordion ul {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .home-ai-accordion li {
+    position: relative;
+    display: table-cell;
+    width: 25%;
+    height: 100%;
+    vertical-align: bottom;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    transition: all 500ms ease;
+  }
+
+  .home-ai-accordion li div {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .home-ai-accordion li a {
+    position: relative;
+    z-index: 3;
+    display: block;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: var(--home-ai-space-5);
+    color: #fff;
+    text-decoration: none;
+    transition: all 200ms ease;
+  }
+
+  .home-ai-accordion li a h3,
+  .home-ai-accordion li a p {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 400ms ease;
+  }
+
+  .home-ai-accordion li a h3 {
+    margin-bottom: 4px;
+    font-size: 22px;
+    line-height: 1.1;
+    text-overflow: clip;
+  }
+
+  .home-ai-accordion li a p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 13.5px;
+    line-height: 1.3;
+  }
+
+  /* Non-active cells shrink; the active (auto-rotating or hovered) cell expands. */
+  .home-ai-accordion li {
+    width: 12%;
+  }
+
+  .home-ai-accordion li:focus {
+    outline: none;
+  }
+
+  .home-ai-accordion li.is-active,
+  .home-ai-accordion ul:hover li:hover {
+    width: 64%;
+  }
+
+  .home-ai-accordion li.is-active a,
+  .home-ai-accordion ul:hover li:hover a {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+  }
+
+  .home-ai-accordion li.is-active a h3,
+  .home-ai-accordion li.is-active a p,
+  .home-ai-accordion ul:hover li:hover a h3,
+  .home-ai-accordion ul:hover li:hover a p {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .home-ai-intro-active {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    z-index: 4;
+    width: 400px;
+    transform: translate(-50%, -50%);
+    padding: var(--home-ai-space-8);
+    background: var(--home-ai-surface);
+    border: 1px solid var(--home-ai-border);
+    border-radius: var(--home-ai-radius-md);
+    box-shadow: 0 18px 50px -20px rgba(0, 0, 0, 0.28), var(--home-ai-shadow-ring);
+  }
+
+  .home-ai-intro-active h3 {
+    margin: 0;
+    font-size: 32px;
+    line-height: 1.2;
+    color: var(--home-ai-fg);
+    animation: home-ai-intro-fade 400ms ease both;
+  }
+
+  .home-ai-intro-active p {
+    margin: var(--home-ai-space-2) 0 0;
+    color: var(--home-ai-muted);
+    font-size: 16px;
+    line-height: 1.5;
+    animation: home-ai-intro-fade 400ms ease both;
+  }
+
+  @keyframes home-ai-intro-fade {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* When the panel can no longer overhang the accordion's right edge,
+     fall back to stacking it underneath. */
+  @media (max-width: 1320px) {
+    .home-ai-intro-active {
+      position: static;
+      width: 100%;
+      max-width: 520px;
+      margin-block-start: var(--home-ai-space-6);
+      margin-inline: auto;
+      transform: none;
+    }
   }
 
   .home-ai-cover-card {
@@ -1472,6 +1650,32 @@
     .home-ai-cover-card {
       min-height: 360px;
       padding: var(--home-ai-space-5);
+    }
+    .home-ai-hero-visual {
+      margin: 4px;
+      padding: 4px;
+    }
+    /* Mobile: accordion sliding + auto-rotation are disabled. All
+       images stack top to bottom at 600x240 (scaled down to fit
+       narrower screens); the text panel is hidden. */
+    .home-ai-accordion {
+      height: auto;
+    }
+    .home-ai-accordion ul {
+      display: block;
+    }
+    .home-ai-accordion li,
+    .home-ai-accordion li.is-active,
+    .home-ai-accordion ul:hover li:hover {
+      display: block;
+      width: 640px;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 600 / 240;
+      transition: none;
+    }
+    .home-ai-intro-active {
+      display: none;
     }
     .home-ai-cover-card::before {
       inset: var(--home-ai-space-5);

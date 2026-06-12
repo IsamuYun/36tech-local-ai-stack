@@ -1,5 +1,33 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import intro1 from '../../assets/image/intro/intro-1.jpg';
+import intro2 from '../../assets/image/intro/intro-2.jpg';
+import intro3 from '../../assets/image/intro/intro-3.jpg';
+import intro4 from '../../assets/image/intro/intro-4.jpg';
+
+const introGallery = [
+  {
+    image: intro1,
+    title: '工作流',
+    description: '把重复步骤沉淀为可复用任务。',
+  },
+  {
+    image: intro2,
+    title: '原型',
+    description: '快速发布首个面向用户的助手。',
+  },
+  {
+    image: intro3,
+    title: '评估',
+    description: '每次变更都配上对照样本。',
+  },
+  {
+    image: intro4,
+    title: '交付',
+    description: '为小团队打磨工具链。',
+  },
+];
+
 const marqueeItems = [
   'Prompt systems',
   'Evaluation loops',
@@ -60,40 +88,75 @@ function Reveal({ as: Component = 'div', className = '', children, ...props }) {
 }
 
 function AiToolsIntro() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return undefined;
+
+    const mediaQuery = window.matchMedia('(max-width: 720px)');
+    const update = () => setIsMobile(mediaQuery.matches);
+
+    update();
+    mediaQuery.addEventListener('change', update);
+
+    return () => mediaQuery.removeEventListener('change', update);
+  }, []);
+
+  useEffect(() => {
+    // On mobile the accordion and auto-rotation are disabled.
+    if (isPaused || isMobile) return undefined;
+
+    const intervalId = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % introGallery.length);
+    }, 6000);
+
+    return () => clearInterval(intervalId);
+  }, [isPaused, isMobile]);
+
+  const activeItem = introGallery[activeIndex];
+
   return (
     <section className="home-ai-section home-ai-hero" id="ai-tools-top">
       <div className="home-ai-container home-ai-hero-split">
-        <Reveal className="home-ai-hero-copy">
+        <Reveal className="home-ai-hero-visual" aria-label="AI 工具独立开发者图片画廊">
           <p className="home-ai-eyebrow">Independent AI Toolmaker · Weekly Field Notes</p>
-          <h2>把 AI 工具做得更像可靠的工作台。</h2>
-          <p className="home-ai-lead">
-            我独立设计、开发、运营面向创作者和小团队的 AI 工具。这里记录真实构建过程、产品判断，以及一个轻量的 Chatbot 原型。
-          </p>
-          <div className="home-ai-hero-cta">
-            <a className="home-ai-btn home-ai-btn-primary" href="#ai-tools-chatbot">
-              试用 Chatbot
-            </a>
-            <a className="home-ai-btn home-ai-btn-secondary home-ai-btn-arrow" href="#ai-tools-timeline">
-              看独立开发时间线
-            </a>
-          </div>
-          <div className="home-ai-editorial-rule" aria-hidden="true" />
-        </Reveal>
+          <div className="home-ai-accordion-stage">
+            <div
+              className="home-ai-accordion"
+              onMouseEnter={() => !isMobile && setIsPaused(true)}
+              onMouseLeave={() => !isMobile && setIsPaused(false)}
+            >
+              <ul>
+                {introGallery.map((item, index) => (
+                  <li
+                    key={item.title}
+                    className={index === activeIndex ? 'is-active' : ''}
+                    style={{ backgroundImage: `url(${item.image})` }}
+                    onMouseEnter={() => !isMobile && setActiveIndex(index)}
+                  >
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-        <Reveal className="home-ai-hero-visual" aria-label="AI 工具独立开发者杂志封面式视觉">
-          <div className="home-ai-cover-card">
-            <div className="home-ai-cover-top">
-              <span>ISSUE 01</span>
-              <span>BUILDING IN PUBLIC</span>
-            </div>
-            <div className="home-ai-orbit" aria-hidden="true" />
-            <div className="home-ai-mini-note">本周主题：从一个可复用 prompt，到一个真正可交付的产品界面。</div>
-            <div className="home-ai-cover-title" aria-hidden="true">
-              <span>AI</span>
-              <span>TOOLS</span>
-              <span>NOTES</span>
+            <div className="home-ai-intro-active" aria-live="polite">
+              <h4 key={`${activeItem.title}-title`}>{activeItem.title}</h4>
+              <p key={`${activeItem.title}-desc`}>{activeItem.description}</p>
             </div>
           </div>
+        </Reveal>
+      </div>
+
+      <div className="home-ai-container">
+        <Reveal className="home-ai-hero-cta home-ai-hero-cta-row">
+          <a className="home-ai-btn home-ai-btn-primary" href="#ai-tools-chatbot">
+            试用 Chatbot
+          </a>
+          <a className="home-ai-btn home-ai-btn-secondary home-ai-btn-arrow" href="#ai-tools-timeline">
+            看独立开发时间线
+          </a>
         </Reveal>
       </div>
     </section>
@@ -271,9 +334,10 @@ export default function AiToolsSection() {
     <section className="home-ai" ref={sectionRef} aria-label="AI tools field notes">
       <AiToolsIntro />
       <AiToolsMarquee />
+      <AiToolsChatbot />
       <AiToolsTimeline />
       <AiToolsMentions />
-      <AiToolsChatbot />
+      
     </section>
   );
 }
