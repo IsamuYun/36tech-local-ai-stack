@@ -6,6 +6,7 @@ import CnAiToolsSection from './sections/cn/AiToolsSection.jsx';
 import RulesSection from './sections/RulesSection.jsx';
 import StackSection from './sections/StackSection.jsx';
 import NavBarSection from './sections/NavBarSection.jsx';
+import ContactSection from './sections/ContactSection.jsx';
 
 function HomePage() {
   return (
@@ -71,6 +72,15 @@ function LocalAiPage() {
   );
 }
 
+function ContactPage() {
+  return (
+    <main className="page page-contact">
+      <NavBarSection />
+      <ContactSection />
+    </main>
+  );
+}
+
 function getCurrentPage() {
   const path = window.location.pathname.replace(/\/$/, '') || '/';
 
@@ -80,6 +90,10 @@ function getCurrentPage() {
 
   if (path === '/local-ai') {
     return 'local-ai';
+  }
+
+  if (path === '/contact') {
+    return 'contact';
   }
 
   return 'home';
@@ -94,6 +108,10 @@ function App() {
 
   if (currentPage === 'cn') {
     return <CnHomePage />;
+  }
+
+  if (currentPage === 'contact') {
+    return <ContactPage />;
   }
 
   return <HomePage />;

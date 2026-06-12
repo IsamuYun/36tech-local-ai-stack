@@ -12,6 +12,7 @@ function exposePageRoutes() {
         ['src/pages/home/index.html', 'home/index.html'],
         ['src/pages/cn/index.html', 'cn/index.html'],
         ['src/pages/local-ai/index.html', 'local-ai/index.html'],
+        ['src/pages/contact/index.html', 'contact/index.html'],
       ];
 
       await Promise.all(
@@ -36,6 +37,7 @@ export default defineConfig({
         home: resolve(__dirname, 'src/pages/home/index.html'),
         cn: resolve(__dirname, 'src/pages/cn/index.html'),
         localAi: resolve(__dirname, 'src/pages/local-ai/index.html'),
+        contact: resolve(__dirname, 'src/pages/contact/index.html'),
       },
     },
   },

@@ -127,8 +127,9 @@ function AiToolsIntro() {
     <section className="home-ai-section home-ai-hero" id="ai-tools-top">
       <div className="home-ai-container home-ai-hero-split">
         <Reveal className="home-ai-hero-visual" aria-label="Image gallery of independent AI toolmaking">
-          <p className="home-ai-eyebrow">Independent AI Toolmaker · Weekly Field Notes</p>
+          
           <div className="home-ai-accordion-stage">
+            <p className="home-ai-eyebrow">Independent AI Toolmaker · Weekly Field Notes</p>
             <div
               className="home-ai-accordion"
               onMouseEnter={() => !isMobile && setIsPaused(true)}

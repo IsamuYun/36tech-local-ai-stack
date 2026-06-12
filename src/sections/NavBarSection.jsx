@@ -1,12 +1,14 @@
 import React from 'react';
-import { FileText, Home, Layers3, Cpu } from 'lucide-react';
+import { Home, Layers3, Cpu, Send, Album } from 'lucide-react';
 import faviconIcon from '../assets/icon/favicon.ico';
 
 const navItems = [
   { label: 'Home', href: '/', Icon: Home },
+  { label: 'Services', href: '/Services', Icon: Layers3 },
+  { label: 'Works', href: '/works', Icon: Album },
   { label: 'Local AI', href: '/local-ai', Icon: Cpu },
-  { label: 'The Stack', href: '/local-ai#stack', Icon: Layers3 },
-  { label: 'Docs', href: '#', Icon: FileText },
+  { label: 'Contact', href: '/contact', Icon: Send },
+  
 ];
 
 function NavItem({ item }) {
