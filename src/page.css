@@ -1795,6 +1795,10 @@
     margin-top: 56px;
   }
 
+  .contact-cards-with-codes {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .contact-card {
     padding: 44px 24px 28px;
     background: #fff;
@@ -1806,6 +1810,25 @@
   .contact-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+  }
+
+  .contact-card-image-only {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    width: min(100%, 254px);
+    height: 348px;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .contact-code-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
   }
 
   .contact-card-icon {

@@ -6,7 +6,8 @@ import CnHomeSection from './sections/cn/home/HomeSection.jsx';
 import RulesSection from './sections/RulesSection.jsx';
 import StackSection from './sections/StackSection.jsx';
 import NavBarSection from './sections/NavBarSection.jsx';
-import ContactSection from './sections/ContactSection.jsx';
+import EnContactSection from './sections/en/contact/ContactSection.jsx';
+import CnContactSection from './sections/cn/contact/ContactSection.jsx';
 import WorksSection from './sections/cn/works/WorksSection.jsx';
 import HikvisionAemMigrationSection from './sections/en/works/HikvisionAemMigrationSection.jsx';
 import { getRouteState } from './routes.js';
@@ -75,7 +76,9 @@ function LocalAiPage() {
   );
 }
 
-function ContactPage() {
+function ContactPage({ language }) {
+  const ContactSection = language === 'cn' ? CnContactSection : EnContactSection;
+
   return (
     <main className="page page-contact">
       <NavBarSection />
@@ -121,7 +124,7 @@ function App() {
   }
 
   if (currentPage === 'contact') {
-    return <ContactPage />;
+    return <ContactPage language={currentRoute.language} />;
   }
 
   if (currentPage === 'works') {
