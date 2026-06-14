@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import intro1 from '../../assets/image/intro/intro-1.jpg';
-import intro2 from '../../assets/image/intro/intro-2.jpg';
-import intro3 from '../../assets/image/intro/intro-3.jpg';
-import intro4 from '../../assets/image/intro/intro-4.jpg';
+import intro1 from '../../../assets/image/intro/intro-1.jpg';
+import intro2 from '../../../assets/image/intro/intro-2.jpg';
+import intro3 from '../../../assets/image/intro/intro-3.jpg';
+import intro4 from '../../../assets/image/intro/intro-4.jpg';
 
 const introGallery = [
   {
@@ -146,6 +146,11 @@ function AiToolsIntro() {
               <p key={`${activeItem.title}-desc`}>{activeItem.description}</p>
             </div>
           </div>
+          <img
+            className="home-ai-mobile-intro-image"
+            src={intro4}
+            alt="小团队 AI 工具开发场景"
+          />
         </Reveal>
       </div>
 

@@ -1,50 +1,65 @@
 import React from 'react';
 import { Home, Layers3, Cpu, Send, Album } from 'lucide-react';
 import faviconIcon from '../assets/icon/favicon.ico';
+import { buildLocalizedPath, getLanguageToggle, getRouteState } from '../routes.js';
 
 const navItems = [
-  { label: 'Home', href: '/', Icon: Home },
-  { label: 'Services', href: '/Services', Icon: Layers3 },
-  { label: 'Works', href: '/works', Icon: Album },
-  { label: 'Local AI', href: '/local-ai', Icon: Cpu },
-  { label: 'Contact', href: '/contact', Icon: Send },
-  
+  { page: 'home', label: { en: 'Home', cn: '首页' }, Icon: Home },
+  { page: 'services', label: { en: 'Services', cn: '服务' }, Icon: Layers3 },
+  { page: 'works', label: { en: 'Works', cn: '作品' }, Icon: Album },
+  { page: 'local-ai', label: { en: 'Local AI', cn: '本地 AI' }, Icon: Cpu },
+  { page: 'contact', label: { en: 'Contact', cn: '联系' }, Icon: Send },
 ];
 
-function NavItem({ item }) {
+function NavItem({ item, currentLanguage, currentPage }) {
   const Icon = item.Icon;
+  const isCurrent = item.page === currentPage;
 
   return (
     <li>
-      <a className="topnav-link" href={item.href}>
+      <a
+        className="topnav-link"
+        href={buildLocalizedPath(item.page, currentLanguage)}
+        aria-current={isCurrent ? 'page' : undefined}
+      >
         <Icon className="topnav-icon" aria-hidden="true" />
-        {item.label}
+        {item.label[currentLanguage]}
       </a>
     </li>
   );
 }
 
 export default function NavBarSection() {
+  const pathname = window.location.pathname;
+  const route = getRouteState(pathname);
+  const languageToggle = getLanguageToggle(pathname);
+
   return (
     <header className="topbar">
-      <a className="brand" href="/" aria-label="36 tech studio home">
+      <a
+        className="brand"
+        href={buildLocalizedPath('home', route.language)}
+        aria-label="36 tech studio home"
+      >
         <img className="brand-icon" src={faviconIcon} alt="" aria-hidden="true" />
         <span className="brand-name">
-          AI Tools by Karl
+          AI Tools by 36 Tech
         </span>
       </a>
 
       <nav className="topnav" aria-label="Primary navigation">
         <ul className="topnav-list">
           {navItems.map((item) => (
-            <NavItem key={item.label} item={item} />
+            <NavItem
+              key={item.page}
+              item={item}
+              currentLanguage={route.language}
+              currentPage={route.page}
+            />
           ))}
         </ul>
-        <a className="topnav-cta" href="/cn" aria-label="切换到中文页面">
-          <span className="topnav-flag" aria-hidden="true">
-            🇨🇳
-          </span>
-          <span>中</span>
+        <a className="topnav-cta" href={languageToggle.href} aria-label={languageToggle.ariaLabel}>
+          <span>{languageToggle.label}</span>
         </a>
       </nav>
     </header>

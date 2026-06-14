@@ -10,9 +10,20 @@ function exposePageRoutes() {
     async closeBundle() {
       const routes = [
         ['src/pages/home/index.html', 'home/index.html'],
+        ['src/pages/home/index.html', 'services/index.html'],
+        ['src/pages/home/index.html', 'en/index.html'],
+        ['src/pages/home/index.html', 'en/services/index.html'],
         ['src/pages/cn/index.html', 'cn/index.html'],
+        ['src/pages/home/index.html', 'cn/services/index.html'],
         ['src/pages/local-ai/index.html', 'local-ai/index.html'],
+        ['src/pages/local-ai/index.html', 'en/local-ai/index.html'],
+        ['src/pages/local-ai/index.html', 'cn/local-ai/index.html'],
         ['src/pages/contact/index.html', 'contact/index.html'],
+        ['src/pages/contact/index.html', 'en/contact/index.html'],
+        ['src/pages/contact/index.html', 'cn/contact/index.html'],
+        ['src/pages/works/index.html', 'works/index.html'],
+        ['src/pages/works/index.html', 'en/works/index.html'],
+        ['src/pages/works/index.html', 'cn/works/index.html'],
       ];
 
       await Promise.all(
@@ -38,6 +49,7 @@ export default defineConfig({
         cn: resolve(__dirname, 'src/pages/cn/index.html'),
         localAi: resolve(__dirname, 'src/pages/local-ai/index.html'),
         contact: resolve(__dirname, 'src/pages/contact/index.html'),
+        works: resolve(__dirname, 'src/pages/works/index.html'),
       },
     },
   },

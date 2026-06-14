@@ -1,19 +1,21 @@
 import React, { useEffect } from 'react';
 import FooterSection from './sections/FooterSection.jsx';
 import HeroSection from './sections/HeroSection.jsx';
-import AiToolsSection from './sections/home/AiToolsSection.jsx';
-import CnAiToolsSection from './sections/cn/AiToolsSection.jsx';
+import EnHomeSection from './sections/en/home/HomeSection.jsx';
+import CnHomeSection from './sections/cn/home/HomeSection.jsx';
 import RulesSection from './sections/RulesSection.jsx';
 import StackSection from './sections/StackSection.jsx';
 import NavBarSection from './sections/NavBarSection.jsx';
 import ContactSection from './sections/ContactSection.jsx';
+import WorksSection from './sections/WorksSection.jsx';
+import { getRouteState } from './routes.js';
 
 function HomePage() {
   return (
     <main className="page page-home">
       <HeroSection />
       <NavBarSection />
-      <AiToolsSection />
+      <EnHomeSection />
       <FooterSection />
     </main>
   );
@@ -24,7 +26,7 @@ function CnHomePage() {
     <main className="page page-home page-home-cn">
       <HeroSection />
       <NavBarSection />
-      <CnAiToolsSection />
+      <CnHomeSection />
       <FooterSection />
     </main>
   );
@@ -81,37 +83,38 @@ function ContactPage() {
   );
 }
 
-function getCurrentPage() {
-  const path = window.location.pathname.replace(/\/$/, '') || '/';
+function WorksPage() {
+  return (
+    <main className="page page-works">
+      <NavBarSection />
+      <WorksSection />
+      <FooterSection />
+    </main>
+  );
+}
 
-  if (path === '/cn') {
-    return 'cn';
-  }
-
-  if (path === '/local-ai') {
-    return 'local-ai';
-  }
-
-  if (path === '/contact') {
-    return 'contact';
-  }
-
-  return 'home';
+function getCurrentRoute() {
+  return getRouteState(window.location.pathname);
 }
 
 function App() {
-  const currentPage = getCurrentPage();
+  const currentRoute = getCurrentRoute();
+  const currentPage = currentRoute.page;
+
+  if (currentPage === 'home' && currentRoute.language === 'cn') {
+    return <CnHomePage />;
+  }
 
   if (currentPage === 'local-ai') {
     return <LocalAiPage />;
   }
 
-  if (currentPage === 'cn') {
-    return <CnHomePage />;
-  }
-
   if (currentPage === 'contact') {
     return <ContactPage />;
+  }
+
+  if (currentPage === 'works') {
+    return <WorksPage />;
   }
 
   return <HomePage />;
