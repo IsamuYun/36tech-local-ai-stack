@@ -24,6 +24,8 @@ function exposePageRoutes() {
         ['src/pages/works/index.html', 'works/index.html'],
         ['src/pages/works/index.html', 'en/works/index.html'],
         ['src/pages/works/index.html', 'cn/works/index.html'],
+        ['src/pages/en/works/hikvision-aem-migration.html', 'en/works/hikvision-aem-migration.html'],
+        ['src/pages/en/works/hikvision-aem-migration.html', 'cn/works/hikvision-aem-migration.html'],
       ];
 
       await Promise.all(
@@ -50,6 +52,7 @@ export default defineConfig({
         localAi: resolve(__dirname, 'src/pages/local-ai/index.html'),
         contact: resolve(__dirname, 'src/pages/contact/index.html'),
         works: resolve(__dirname, 'src/pages/works/index.html'),
+        hikvisionAemMigration: resolve(__dirname, 'src/pages/en/works/hikvision-aem-migration.html'),
       },
     },
   },

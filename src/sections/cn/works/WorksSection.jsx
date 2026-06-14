@@ -1,10 +1,10 @@
 import React from 'react';
 import { ArrowRight, Clock } from 'lucide-react';
 
-import aiWorkerImage from '../assets/image/works/ai-worker.jpeg';
-import intro1 from '../assets/image/intro/intro-1.jpg';
-import intro2 from '../assets/image/intro/intro-2.jpg';
-import intro3 from '../assets/image/intro/intro-3.jpg';
+import SystemMigration from '../../../assets/image/works/system-migration.jpg';
+import intro1 from '../../../assets/image/intro/intro-1.jpg';
+import intro2 from '../../../assets/image/intro/intro-2.jpg';
+import intro3 from '../../../assets/image/intro/intro-3.jpg';
 
 const works = [
   {
@@ -14,9 +14,9 @@ const works = [
     summary:
       '把提示词、文件上下文、执行步骤和人工复核放在同一个工作台里，让小团队可以重复使用成熟流程，而不是每次从空白聊天开始。',
     duration: '项目样本',
-    image: aiWorkerImage,
+    image: SystemMigration,
     imageAlt: 'AI worker interface illustration with coding panels',
-    href: '/contact',
+    href: '/en/works/hikvision-aem-migration.html',
   },
   {
     id: 'local-ai-stack',

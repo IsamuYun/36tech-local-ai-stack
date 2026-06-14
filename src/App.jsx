@@ -7,7 +7,8 @@ import RulesSection from './sections/RulesSection.jsx';
 import StackSection from './sections/StackSection.jsx';
 import NavBarSection from './sections/NavBarSection.jsx';
 import ContactSection from './sections/ContactSection.jsx';
-import WorksSection from './sections/WorksSection.jsx';
+import WorksSection from './sections/cn/works/WorksSection.jsx';
+import HikvisionAemMigrationSection from './sections/en/works/HikvisionAemMigrationSection.jsx';
 import { getRouteState } from './routes.js';
 
 function HomePage() {
@@ -93,6 +94,16 @@ function WorksPage() {
   );
 }
 
+function HikvisionAemMigrationPage() {
+  return (
+    <main className="page page-hikvision-aem-migration">
+      <NavBarSection />
+      <HikvisionAemMigrationSection />
+      <FooterSection />
+    </main>
+  );
+}
+
 function getCurrentRoute() {
   return getRouteState(window.location.pathname);
 }
@@ -115,6 +126,10 @@ function App() {
 
   if (currentPage === 'works') {
     return <WorksPage />;
+  }
+
+  if (currentPage === 'hikvision-aem-migration') {
+    return <HikvisionAemMigrationPage />;
   }
 
   return <HomePage />;
