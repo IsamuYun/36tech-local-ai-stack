@@ -1,10 +1,11 @@
 import React from 'react';
-import { Home, Layers3, Cpu, Send, Album } from 'lucide-react';
+import { Home, Info, Layers3, Cpu, Send, Album } from 'lucide-react';
 import faviconIcon from '../assets/icon/favicon.ico';
 import { buildLocalizedPath, getLanguageToggle, getRouteState } from '../routes.js';
 
 const navItems = [
   { page: 'home', label: { en: 'Home', cn: '首页' }, Icon: Home },
+  { page: 'about', label: { en: 'About', cn: '关于' }, Icon: Info },
   { page: 'services', label: { en: 'Services', cn: '服务' }, Icon: Layers3 },
   { page: 'works', label: { en: 'Works', cn: '作品' }, Icon: Album },
   { page: 'local-ai', label: { en: 'Local AI', cn: '本地 AI' }, Icon: Cpu },

@@ -3,6 +3,7 @@ import FooterSection from './sections/FooterSection.jsx';
 import HeroSection from './sections/HeroSection.jsx';
 import EnHomeSection from './sections/en/home/HomeSection.jsx';
 import CnHomeSection from './sections/cn/home/HomeSection.jsx';
+import AboutSection from './sections/en/AboutSection.jsx';
 import EnServicesSection from './sections/en/ServicesSection.jsx';
 import RulesSection from './sections/RulesSection.jsx';
 import StackSection from './sections/StackSection.jsx';
@@ -88,6 +89,17 @@ function ServicesPage({ language }) {
   );
 }
 
+function AboutPage({ language }) {
+  return (
+    <main className="page page-about">
+      <HeroSection />
+      <NavBarSection />
+      <AboutSection language={language} />
+      <FooterSection />
+    </main>
+  );
+}
+
 function ContactPage({ language }) {
   const ContactSection = language === 'cn' ? CnContactSection : EnContactSection;
 
@@ -137,6 +149,10 @@ function App() {
 
   if (currentPage === 'services') {
     return <ServicesPage language={currentRoute.language} />;
+  }
+
+  if (currentPage === 'about') {
+    return <AboutPage language={currentRoute.language} />;
   }
 
   if (currentPage === 'contact') {

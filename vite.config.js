@@ -10,10 +10,13 @@ function exposePageRoutes() {
     async closeBundle() {
       const routes = [
         ['src/pages/home/index.html', 'home/index.html'],
+        ['src/pages/home/index.html', 'about/index.html'],
         ['src/pages/home/index.html', 'services/index.html'],
         ['src/pages/home/index.html', 'en/index.html'],
+        ['src/pages/home/index.html', 'en/about/index.html'],
         ['src/pages/home/index.html', 'en/services/index.html'],
         ['src/pages/cn/index.html', 'cn/index.html'],
+        ['src/pages/home/index.html', 'cn/about/index.html'],
         ['src/pages/home/index.html', 'cn/services/index.html'],
         ['src/pages/local-ai/index.html', 'local-ai/index.html'],
         ['src/pages/local-ai/index.html', 'en/local-ai/index.html'],

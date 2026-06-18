@@ -4,6 +4,10 @@ import intro1 from '../../../assets/image/intro/intro-1.jpg';
 import intro2 from '../../../assets/image/intro/intro-2.jpg';
 import intro3 from '../../../assets/image/intro/intro-3.jpg';
 import intro4 from '../../../assets/image/intro/intro-4.jpg';
+import focusWhatWeDo from '../../../assets/image/in-focus/what-we-do.jpg';
+import focusHowWeDeliver from '../../../assets/image/in-focus/how-we-deliver.jpg';
+import focusLocalAi from '../../../assets/image/in-focus/local-ai-deployment.jpg';
+import focusLearnFromAi from '../../../assets/image/in-focus/ai-knowledge-base.jpg';
 
 const introGallery = [
   {
@@ -34,6 +38,34 @@ const marqueeItems = [
   'Local-first workflows',
   'Small-team automation',
   'Interface craft',
+];
+
+// Fill the content fields manually when the final copy is ready.
+const inFocusItems = [
+  {
+    image: focusWhatWeDo,
+    title: 'What We Do',
+    href: '/services',
+    content: 'AI strategy, data analytics, workflow automation, and custom AI agents — tailored for mid-size businesses ready to work smarter',
+  },
+  {
+    image: focusHowWeDeliver,
+    title: 'How We Deliver',
+    href: '/works',
+    content: 'Real projects, real results. See how we\'ve helped businesses turn complex data into clear decisions and manual processes into automated workflows',
+  },
+  {
+    image: focusLocalAi,
+    title: 'AI for Local Business',
+    href: '/local-ai',
+    content: 'Orange County businesses face unique challenges. We bring enterprise-level AI solutions to local companies — with the hands-on support that only a local partner can provide',
+  },
+  {
+    image: focusLearnFromAi,
+    title: 'Learn from AI',
+    href: '/services',
+    content: 'Not sure where to start with AI? Browse our knowledge base for practical guides, use cases, and answers',
+  },
 ];
 
 const timelineItems = [
@@ -163,10 +195,36 @@ function AiToolsIntro() {
 
       <div className="home-ai-container">
         <Reveal className="home-ai-hero-cta home-ai-hero-cta-row">
-          <a className="home-ai-scroll-down" href="#ai-tools-chatbot" aria-label="Scroll to the chatbot">
+          <a className="home-ai-scroll-down" href="#ai-tools-in-focus" aria-label="Scroll to In Focus">
             <span aria-hidden="true" />
           </a>
         </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function AiToolsInFocus() {
+  return (
+    <section className="home-ai-section home-ai-in-focus" id="ai-tools-in-focus">
+      <div className="home-ai-container">
+        <Reveal className="home-ai-section-heading">
+          <p className="home-ai-eyebrow">In Focus</p>
+        </Reveal>
+
+        <div className="home-ai-focus-grid">
+          
+          {inFocusItems.map((item) => (
+            <Reveal as="a" className="home-ai-focus-card" href={item.href} key={item.title}>
+              <img src={item.image} alt="" aria-hidden="true" />
+              <div className="home-ai-focus-body">
+                <h3>{item.title}</h3>
+                <div className="home-ai-focus-rule" aria-hidden="true" />
+                <p>{item.content}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -345,6 +403,7 @@ export default function HomeSection() {
     <section className="home-ai" ref={sectionRef} aria-label="AI tools field notes">
       <AiToolsIntro />
       <AiToolsMarquee />
+      <AiToolsInFocus />
       <AiToolsChatbot />
       <AiToolsTimeline />
       <AiToolsMentions />

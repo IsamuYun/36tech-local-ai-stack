@@ -4,6 +4,10 @@ import intro1 from '../../../assets/image/intro/intro-1.jpg';
 import intro2 from '../../../assets/image/intro/intro-2.jpg';
 import intro3 from '../../../assets/image/intro/intro-3.jpg';
 import intro4 from '../../../assets/image/intro/intro-4.jpg';
+import focusWhatWeDo from '../../../assets/image/in-focus/what-we-do.jpg';
+import focusHowWeDeliver from '../../../assets/image/in-focus/how-we-deliver.jpg';
+import focusLocalAi from '../../../assets/image/in-focus/local-ai-deployment.jpg';
+import focusLearnFromAi from '../../../assets/image/in-focus/ai-knowledge-base.jpg';
 
 const introGallery = [
   {
@@ -34,6 +38,33 @@ const marqueeItems = [
   'Local-first workflows',
   'Small-team automation',
   'Interface craft',
+];
+
+const inFocusItems = [
+  {
+    image: focusWhatWeDo,
+    title: '我们做什么',
+    href: '/services',
+    content: 'AI 战略、数据分析、工作流自动化与定制 AI 智能体，为希望更高效运营的中型企业量身打造。',
+  },
+  {
+    image: focusHowWeDeliver,
+    title: '我们如何交付',
+    href: '/works',
+    content: '真实项目，真实结果。看看我们如何帮助企业把复杂数据变成清晰决策，把手动流程变成自动化工作流。',
+  },
+  {
+    image: focusLocalAi,
+    title: '本地企业的 AI',
+    href: '/local-ai',
+    content: '橙县企业面临独特挑战。我们把企业级 AI 解决方案带给本地公司，并提供只有本地合作伙伴才能做到的贴身支持。',
+  },
+  {
+    image: focusLearnFromAi,
+    title: '学习 AI',
+    href: '/services',
+    content: '不确定从哪里开始使用 AI？浏览我们的知识库，获取实用指南、应用场景和常见问题答案。',
+  },
 ];
 
 const timelineItems = [
@@ -156,10 +187,35 @@ function AiToolsIntro() {
 
       <div className="home-ai-container">
         <Reveal className="home-ai-hero-cta home-ai-hero-cta-row">
-          <a className="home-ai-scroll-down" href="#ai-tools-chatbot" aria-label="滚动到 Chatbot">
+          <a className="home-ai-scroll-down" href="#ai-tools-in-focus" aria-label="滚动到聚焦内容">
             <span aria-hidden="true" />
           </a>
         </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function AiToolsInFocus() {
+  return (
+    <section className="home-ai-section home-ai-in-focus" id="ai-tools-in-focus">
+      <div className="home-ai-container">
+        <Reveal className="home-ai-section-heading">
+          <p className="home-ai-eyebrow">聚焦</p>
+        </Reveal>
+
+        <div className="home-ai-focus-grid">
+          {inFocusItems.map((item) => (
+            <Reveal as="a" className="home-ai-focus-card" href={item.href} key={item.title}>
+              <img src={item.image} alt="" aria-hidden="true" />
+              <div className="home-ai-focus-body">
+                <h3>{item.title}</h3>
+                <div className="home-ai-focus-rule" aria-hidden="true" />
+                <p>{item.content}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -336,6 +392,7 @@ export default function AiToolsSection() {
     <section className="home-ai" ref={sectionRef} aria-label="AI tools field notes">
       <AiToolsIntro />
       <AiToolsMarquee />
+      <AiToolsInFocus />
       <AiToolsChatbot />
       <AiToolsTimeline />
       <AiToolsMentions />

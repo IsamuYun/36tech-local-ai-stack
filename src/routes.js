@@ -4,6 +4,7 @@ export const DEFAULT_LANGUAGE = 'en';
 
 export const PAGE_PATHS = {
   home: '/',
+  about: '/about',
   services: '/services',
   works: '/works',
   'hikvision-aem-migration': '/works/hikvision-aem-migration.html',
