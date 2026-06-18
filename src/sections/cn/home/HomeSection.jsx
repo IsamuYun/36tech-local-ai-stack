@@ -121,8 +121,8 @@ function AiToolsIntro() {
     <section className="home-ai-section home-ai-hero" id="ai-tools-top">
       <div className="home-ai-container home-ai-hero-split">
         <Reveal className="home-ai-hero-visual" aria-label="AI 工具独立开发者图片画廊">
-          <p className="home-ai-eyebrow">Independent AI Toolmaker · Weekly Field Notes</p>
           <div className="home-ai-accordion-stage">
+            <p className="home-ai-eyebrow">Ways we are making a difference</p>
             <div
               className="home-ai-accordion"
               onMouseEnter={() => !isMobile && setIsPaused(true)}
@@ -156,11 +156,8 @@ function AiToolsIntro() {
 
       <div className="home-ai-container">
         <Reveal className="home-ai-hero-cta home-ai-hero-cta-row">
-          <a className="home-ai-btn home-ai-btn-primary" href="#ai-tools-chatbot">
-            试用 Chatbot
-          </a>
-          <a className="home-ai-btn home-ai-btn-secondary home-ai-btn-arrow" href="#ai-tools-timeline">
-            看独立开发时间线
+          <a className="home-ai-scroll-down" href="#ai-tools-chatbot" aria-label="滚动到 Chatbot">
+            <span aria-hidden="true" />
           </a>
         </Reveal>
       </div>

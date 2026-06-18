@@ -503,6 +503,71 @@
     justify-content: center;
   }
 
+  .home-ai-scroll-down {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    width: 52px;
+    height: 96px;
+    color: var(--home-ai-fg);
+    transition: opacity .2s cubic-bezier(0.2, 0, 0, 1), transform .2s cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .home-ai-scroll-down:hover {
+    opacity: 0.58;
+    transform: translateY(2px);
+  }
+
+  .home-ai-scroll-down span {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 30px;
+    height: 50px;
+    margin-left: -15px;
+    border: 2px solid currentColor;
+    border-radius: 50px;
+    box-sizing: border-box;
+  }
+
+  .home-ai-scroll-down span::before {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    margin-left: -3px;
+    content: "";
+    background-color: currentColor;
+    border-radius: 100%;
+    animation: homeAiMouseWheel 2s infinite;
+    box-sizing: border-box;
+  }
+
+  .home-ai-scroll-down::before,
+  .home-ai-scroll-down::after {
+    position: absolute;
+    left: 50%;
+    width: 18px;
+    height: 18px;
+    margin-left: -9px;
+    content: "";
+    border-left: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(-45deg);
+    animation: homeAiArrowBreath 1.8s infinite;
+    box-sizing: border-box;
+  }
+
+  .home-ai-scroll-down::before {
+    top: 59px;
+  }
+
+  .home-ai-scroll-down::after {
+    top: 72px;
+    animation-delay: .28s;
+  }
+
   .home-ai-btn {
     display: inline-flex;
     align-items: center;
@@ -1047,7 +1112,8 @@
   }
 
   .home-ai-input:focus-visible,
-  .home-ai-btn:focus-visible {
+  .home-ai-btn:focus-visible,
+  .home-ai-scroll-down:focus-visible {
     outline: 0;
     box-shadow: 0 0 0 3px color-mix(in oklab, var(--home-ai-accent), transparent 70%);
   }
@@ -1090,9 +1156,53 @@
     to { opacity: 1; transform: scale(1); }
   }
 
+  @keyframes homeAiMouseWheel {
+    0% {
+      transform: translate(0, 0);
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    80% {
+      transform: translate(0, 20px);
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes homeAiArrowBreath {
+    0% {
+      transform: rotate(-45deg) translate(0, 0);
+      opacity: 0.16;
+    }
+    50% {
+      opacity: 0.9;
+    }
+    100% {
+      transform: rotate(-45deg) translate(-8px, 8px);
+      opacity: 0.16;
+    }
+  }
+
   @keyframes homeAiTicker {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-ai-scroll-down {
+      transition: none;
+    }
+
+    .home-ai-scroll-down span::before,
+    .home-ai-scroll-down::before,
+    .home-ai-scroll-down::after {
+      animation: none;
+      opacity: 1;
+    }
   }
 
   /* ============================================================

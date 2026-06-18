@@ -129,7 +129,7 @@ function AiToolsIntro() {
         <Reveal className="home-ai-hero-visual" aria-label="Image gallery of independent AI toolmaking">
           
           <div className="home-ai-accordion-stage">
-            <p className="home-ai-eyebrow">Independent AI Toolmaker · Weekly Field Notes</p>
+            <p className="home-ai-eyebrow">Ways we are making a difference</p>
             <div
               className="home-ai-accordion"
               onMouseEnter={() => !isMobile && setIsPaused(true)}
@@ -163,11 +163,8 @@ function AiToolsIntro() {
 
       <div className="home-ai-container">
         <Reveal className="home-ai-hero-cta home-ai-hero-cta-row">
-          <a className="home-ai-btn home-ai-btn-primary" href="#ai-tools-chatbot">
-            Try the chatbot
-          </a>
-          <a className="home-ai-btn home-ai-btn-secondary home-ai-btn-arrow" href="#ai-tools-timeline">
-            View the builder timeline
+          <a className="home-ai-scroll-down" href="#ai-tools-chatbot" aria-label="Scroll to the chatbot">
+            <span aria-hidden="true" />
           </a>
         </Reveal>
       </div>

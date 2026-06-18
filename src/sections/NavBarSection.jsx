@@ -43,7 +43,7 @@ export default function NavBarSection() {
       >
         <img className="brand-icon" src={faviconIcon} alt="" aria-hidden="true" />
         <span className="brand-name">
-          AI Tools by 36 Tech
+          AI-Powered by 36 Tech
         </span>
       </a>
 
