@@ -3,6 +3,7 @@ import FooterSection from './sections/FooterSection.jsx';
 import HeroSection from './sections/HeroSection.jsx';
 import EnHomeSection from './sections/en/home/HomeSection.jsx';
 import CnHomeSection from './sections/cn/home/HomeSection.jsx';
+import EnServicesSection from './sections/en/ServicesSection.jsx';
 import RulesSection from './sections/RulesSection.jsx';
 import StackSection from './sections/StackSection.jsx';
 import NavBarSection from './sections/NavBarSection.jsx';
@@ -76,6 +77,17 @@ function LocalAiPage() {
   );
 }
 
+function ServicesPage({ language }) {
+  return (
+    <main className="page page-services">
+      <HeroSection />
+      <NavBarSection />
+      <EnServicesSection language={language} />
+      <FooterSection />
+    </main>
+  );
+}
+
 function ContactPage({ language }) {
   const ContactSection = language === 'cn' ? CnContactSection : EnContactSection;
 
@@ -121,6 +133,10 @@ function App() {
 
   if (currentPage === 'local-ai') {
     return <LocalAiPage />;
+  }
+
+  if (currentPage === 'services') {
+    return <ServicesPage language={currentRoute.language} />;
   }
 
   if (currentPage === 'contact') {
