@@ -3,7 +3,8 @@ import FooterSection from './sections/FooterSection.jsx';
 import HeroSection from './sections/HeroSection.jsx';
 import EnHomeSection from './sections/en/home/HomeSection.jsx';
 import CnHomeSection from './sections/cn/home/HomeSection.jsx';
-import AboutSection from './sections/en/AboutSection.jsx';
+import CnAboutSection from './sections/cn/AboutSection.jsx';
+import EnAboutSection from './sections/en/AboutSection.jsx';
 import EnServicesSection from './sections/en/ServicesSection.jsx';
 import RulesSection from './sections/RulesSection.jsx';
 import StackSection from './sections/StackSection.jsx';
@@ -93,11 +94,13 @@ function ServicesPage({ language }) {
 }
 
 function AboutPage({ language }) {
+  const AboutSection = language === 'cn' ? CnAboutSection : EnAboutSection;
+
   return (
     <main className="page page-about">
       <HeroSection />
       <NavBarSection />
-      <AboutSection language={language} />
+      <AboutSection />
       <FooterSection />
     </main>
   );

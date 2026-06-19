@@ -1,216 +1,201 @@
 import React from 'react';
 
-import companyLogo from '../../assets/logo/36-tech-logo.png';
+import companyLogo from '../../assets/image/about/36-Tech-Freedom-Logo.png';
+import '../../css/about.css';
 
-const aboutCopy = {
-  en: {
-    sectionLabel: 'About Us',
-    eyebrow: 'About Us',
-    companyName: '36 Tech Freedom LLC',
-    founded: 'Founded in 2018',
-    body: [
-      '36 Tech Freedom LLC was founded in 2018 to help small and mid-sized businesses turn practical AI into daily operating capacity. We work with leaders who need better visibility, faster decisions, and fewer repetitive tasks, but do not want a black-box platform dropped into the business without context.',
-      'Our work starts with the way a company already operates. We map the workflows, data sources, approvals, customer questions, and reporting habits that shape the business today. From there, we design AI-Powered services that fit the real environment: AI strategy and training, smart data analytics, AI knowledge bases, workflow automation, and custom AI agents that support multi-step tasks across existing systems.',
-      'For many growing companies, the challenge is not access to AI. The challenge is knowing where AI creates measurable value, how to keep people in control, and how to deploy tools without overwhelming the team. We focus on that middle ground. We build clear, maintainable solutions; document how they work; train the people who will use them; and keep improving after launch. The goal is reliable AI-Powered operations that businesses can understand, own, and scale.',
-    ],
+const founders = [
+  {
+    name: 'Weiqun Chen',
+    role: 'Science, data, and applied AI',
+    bio: 'Ph.D. in Chemical Engineering from UC Davis, B.S. in Materials Science from Tsinghua University, and nearly a decade as a working data scientist. She does not need your science explained to her—she has lived it.',
   },
-  cn: {
-    sectionLabel: '关于我们',
-    eyebrow: '关于我们',
-    companyName: '36 Tech Freedom LLC',
-    founded: '成立于 2018 年',
-    body: [
-      '36 Tech Freedom LLC 成立于 2018 年，专注于帮助中小企业把 AI-Powered 能力落到真实业务中。我们服务的客户通常已经意识到团队需要更清晰的数据、更快速的决策和更少的重复劳动，但不希望把一个不了解业务语境的黑盒平台直接塞进日常流程。',
-      '我们的工作从企业现有的运营方式开始。我们会梳理工作流、数据来源、审批节点、客户问题、报表习惯和团队协作方式，再据此设计真正适配业务现场的 AI-Powered 服务，包括 AI 战略与培训、智能数据分析、AI 知识库、工作流自动化，以及能够跨系统处理多步骤任务的定制 AI 智能体。',
-      '对很多成长型企业来说，难点不是“有没有 AI”，而是 AI 应该用在哪里、如何产生可衡量价值、怎样让员工保持掌控感，以及如何在不增加团队负担的前提下完成落地。36 Tech Freedom LLC 关注的正是这个中间地带：我们构建清晰、可维护的解决方案，记录系统如何工作，培训真正使用它的人，并在上线后持续优化。我们的目标不是追逐每一次模型更新，而是帮助企业建立能够理解、拥有并扩展的 AI-Powered 运营能力。',
-    ],
+  {
+    name: 'Chunnan Yun',
+    role: 'Production software and systems',
+    bio: 'Twenty years building production software across finance, education, and online gaming—industries where systems have to be fast, secure, and right the first time.',
   },
-};
+];
 
-const aboutSectionCss = `
-  .about-section {
-    --about-bg: #0D47A1;
-    --about-panel: #1565C0;
-    --about-label: #f6ffff;
-    --about-card: #ffffff;
-    --about-ink: #0f172a;
-    --about-muted: #465568;
-    --about-rule: #d7dce5;
-    width: 100vw;
-    margin-inline: calc(50% - 50vw);
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    background: var(--about-bg);
-    color: var(--about-label);
-  }
+const firstNinetyDays = [
+  {
+    number: '01',
+    title: 'Executive AI orientation',
+    body: 'We bring leadership from “we should probably do something about AI” to a clear, shared, hype-free view of where it creates real value for the company—and where it does not.',
+  },
+  {
+    number: '02',
+    title: 'Find the right first project',
+    body: 'Together, we choose a high-value, low-risk pilot that can prove value without forcing the organization into a premature platform commitment.',
+  },
+  {
+    number: '03',
+    title: 'Prove it, then scale',
+    body: 'We build the pilot, measure the result, document what worked, and expand only the capabilities that earn their place.',
+  },
+];
 
-  .about-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -2;
-    background:
-      linear-gradient(180deg, rgba(21, 101, 192, 0.78), rgba(13, 71, 161, 0) 48%),
-      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 92px);
-  }
+const pilotProjects = [
+  {
+    title: 'Supply chain and operations optimization',
+    body: 'Use your own data to reduce cost, waste, delays, and operational guesswork.',
+  },
+  {
+    title: 'Enterprise knowledge base',
+    body: 'Turn expertise locked in senior people and scattered documents into a searchable, lasting company asset.',
+  },
+  {
+    title: 'Internal AI assistant',
+    body: 'Give the team a private Q&A system grounded in company knowledge, with answers available in seconds.',
+  },
+];
 
-  .about-section::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -180px;
-    z-index: -1;
-    width: min(1120px, 88vw);
-    height: 340px;
-    transform: translateX(-50%) skewY(-5deg);
-    background: var(--about-panel);
-    opacity: 0.58;
-  }
-
-  .about-layout {
-    width: min(100%, 1480px);
-    min-height: clamp(660px, calc(100vh - 110px), 900px);
-    margin: 0 auto;
-    padding: clamp(40px, 7vw, 96px) clamp(24px, 4vw, 64px);
-    display: grid;
-    place-items: center;
-  }
-
-  .about-card {
-    width: min(100%, 940px);
-    background: var(--about-card);
-    color: var(--about-ink);
-    border: 1px solid rgba(255, 255, 255, 0.82);
-    border-radius: 2px;
-    padding: clamp(26px, 4.5vw, 58px);
-    box-shadow: 0 28px 72px rgba(4, 22, 58, 0.28);
-  }
-
-  .about-eyebrow {
-    margin: 0 0 clamp(20px, 3vw, 34px);
-    color: #1565C0;
-    font-family: var(--font-inter), "Noto Sans SC", "PingFang SC", system-ui, sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.24em;
-    text-align: center;
-    text-transform: uppercase;
-  }
-
-  .about-brand-lockup {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: clamp(16px, 3vw, 28px);
-  }
-
-  .about-logo {
-    width: clamp(76px, 9vw, 112px);
-    height: clamp(76px, 9vw, 112px);
-    display: block;
-    object-fit: contain;
-    flex: none;
-  }
-
-  .about-company-name {
-    margin: 0;
-    max-width: 720px;
-    color: var(--about-ink);
-    font-size: clamp(28px, 5vw, 56px);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: 0;
-    text-wrap: balance;
-  }
-
-  .about-rule {
-    width: 100%;
-    height: 1px;
-    margin: clamp(24px, 4vw, 40px) 0 clamp(20px, 3vw, 32px);
-    background: var(--about-rule);
-  }
-
-  .about-founded {
-    margin: 0 0 18px;
-    color: #1565C0;
-    font-size: 13px;
-    font-weight: 900;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-
-  .about-body {
-    display: grid;
-    gap: 16px;
-  }
-
-  .about-body p {
-    margin: 0;
-    color: var(--about-muted);
-    font-size: clamp(16px, 1.25vw, 18px);
-    line-height: 1.78;
-    letter-spacing: 0;
-    text-wrap: pretty;
-  }
-
-  .about-section[data-language="cn"] .about-founded {
-    letter-spacing: 0.12em;
-  }
-
-  .about-section[data-language="cn"] .about-body p {
-    line-height: 1.9;
-  }
-
-  @media (max-width: 720px) {
-    .about-layout {
-      min-height: auto;
-      padding-block: 44px;
-    }
-
-    .about-card {
-      padding: 24px;
-    }
-
-    .about-brand-lockup {
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .about-company-name {
-      font-size: clamp(30px, 10vw, 42px);
-    }
-  }
-`;
-
-export default function AboutSection({ language = 'en' }) {
-  const copy = aboutCopy[language] || aboutCopy.en;
-
+export default function AboutSection() {
   return (
     <section
-      className="about-section"
+      className="about-brochure"
       id="about-top"
-      aria-label={copy.sectionLabel}
-      data-language={language}
+      lang="en"
+      aria-label="About 36 Tech Freedom"
+      style={{ '--about-brand-image': `url("${companyLogo}")` }}
     >
-      <style>{aboutSectionCss}</style>
-      <div className="about-layout">
-        <article className="about-card">
-          <p className="about-eyebrow">{copy.eyebrow}</p>
-          <div className="about-brand-lockup">
-            <img className="about-logo" src={companyLogo} alt="" aria-hidden="true" />
-            <h1 className="about-company-name">{copy.companyName}</h1>
+      <header className="about-brochure-hero">
+        <div className="about-brochure-shell">
+          <div className="about-brochure-runhead">
+            <span>36 <b>Tech</b> Freedom LLC</span>
+            <span>Company profile · 2026</span>
           </div>
-          <div className="about-rule" aria-hidden="true" />
-          <p className="about-founded">{copy.founded}</p>
-          <div className="about-body">
-            {copy.body.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+
+          <div className="about-brochure-hero-grid">
+            <div className="about-brochure-hero-copy">
+              <p className="about-brochure-eyebrow">AI-Powered Operations · Established 2018</p>
+              <h1>Turning AI curiosity into AI capability.</h1>
+              <p className="about-brochure-lead">
+                By a team that understands your science, not just your software.
+              </p>
+              <div className="about-brochure-actions">
+                <a className="about-brochure-primary" href="/en/contact">Start a conversation</a>
+                <a className="about-brochure-secondary" href="#about-90-days">See your first 90 days</a>
+              </div>
+            </div>
+
+            <div className="about-brochure-brand" aria-label="36 Tech Freedom logo">
+              <img src={companyLogo} alt="36 Tech Freedom" />
+              <p>Practical AI for companies built on science and rigor.</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section className="about-brochure-section about-brochure-company">
+        <div className="about-brochure-shell">
+          <div className="about-brochure-section-heading">
+            <p className="about-brochure-eyebrow">Who we are</p>
+            <h2>Small by design. Deep where it matters.</h2>
+          </div>
+
+          <div className="about-brochure-company-grid">
+            <div className="about-brochure-company-copy">
+              <p>
+                36 Tech Freedom is a boutique technology firm in Irvine, California. We help mid-sized companies put AI and data to work—not as a buzzword, but as practical, measurable improvements to how the business actually runs.
+              </p>
+              <p>
+                You work directly with the two people who do the work. For a company built on science and rigor, that removes the translation layer and the learning curve about your world.
+              </p>
+            </div>
+
+            <div className="about-brochure-fact">
+              <span>Our advantage</span>
+              <strong>We speak both your science and your systems.</strong>
+              <p>Domain understanding and production engineering stay in the same room from first conversation through launch.</p>
+            </div>
+          </div>
+
+          <div className="about-brochure-founders" aria-label="Founding team">
+            {founders.map((founder, index) => (
+              <article className="about-brochure-founder" key={founder.name}>
+                <span className="about-brochure-index">0{index + 1}</span>
+                <p className="about-brochure-founder-role">{founder.role}</p>
+                <h3>{founder.name}</h3>
+                <p>{founder.bio}</p>
+              </article>
             ))}
           </div>
-        </article>
-      </div>
+        </div>
+      </section>
+
+      <section className="about-brochure-section about-brochure-ninety" id="about-90-days">
+        <div className="about-brochure-shell">
+          <div className="about-brochure-section-heading about-brochure-ninety-heading">
+            <p className="about-brochure-eyebrow">What we do</p>
+            <h2>Your first 90 days with AI.</h2>
+            <p>
+              Most leadership teams do not need another vendor pitch. They need to understand what AI can and cannot do for their business before spending on the wrong thing. We start there.
+            </p>
+          </div>
+
+          <div className="about-brochure-path">
+            {firstNinetyDays.map((step) => (
+              <article className="about-brochure-step" key={step.number}>
+                <span className="about-brochure-index">{step.number}</span>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="about-brochure-pilots">
+            <div>
+              <p className="about-brochure-eyebrow">Common starting points</p>
+              <h3>A first project that is valuable, measurable, and contained.</h3>
+            </div>
+            <div className="about-brochure-pilot-list">
+              {pilotProjects.map((pilot) => (
+                <article key={pilot.title}>
+                  <h4>{pilot.title}</h4>
+                  <p>{pilot.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="about-brochure-section about-brochure-approach">
+        <div className="about-brochure-shell about-brochure-approach-grid">
+          <article>
+            <p className="about-brochure-eyebrow">How we work</p>
+            <h2>Start small. Protect your data. Prove value before scaling.</h2>
+            <p>We would rather earn the second project than oversell the first.</p>
+          </article>
+
+          <article>
+            <p className="about-brochure-eyebrow">Our name</p>
+            <h2>Find the essential move. Create freedom to focus.</h2>
+            <p>
+              “36 Tech Freedom” draws on the Thirty-Six Stratagems, a classic Chinese text on strategy and the belief that every situation has one essential, decisive move. Our job is to find yours in your data. Freedom is the goal: technology that lets you focus on what you do best while we handle the data and systems.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className="about-brochure-contact" aria-labelledby="about-contact-title">
+        <div className="about-brochure-shell">
+          <div className="about-brochure-contact-panel">
+            <div>
+              <p className="about-brochure-eyebrow">Let&apos;s talk</p>
+              <h2 id="about-contact-title">Bring us the business question that has been sitting between teams.</h2>
+              <p>We will help you determine whether AI is the right move—and what a responsible first step looks like.</p>
+            </div>
+
+            <dl className="about-brochure-contact-list">
+              <div><dt>Email</dt><dd><a href="mailto:yun@36techfreedom.com">yun@36techfreedom.com</a></dd></div>
+              <div><dt>Web</dt><dd><a href="https://36techfreedom.com">36techfreedom.com</a></dd></div>
+              <div><dt>Phone</dt><dd><a href="tel:+16263667032">626-366-7032</a></dd></div>
+              <div><dt>Entity</dt><dd>36 Tech Freedom LLC · United States</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
     </section>
   );
 }

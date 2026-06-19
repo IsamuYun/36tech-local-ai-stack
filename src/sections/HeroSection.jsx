@@ -470,7 +470,7 @@ export default function HeroSection() {
 
       <div className="tides-ui">
         <div className="tides-ui-top">
-          <div className="tides-label">◑ &nbsp;T I D E S</div>
+          <div className="tides-label">◑ &nbsp;36 TECH FREEDOM</div>
           <div className="tides-mood">
             <span ref={moodNameRef}>{initialMoodName}</span>
             <span ref={moodTimeRef} className="tides-mood-time">
