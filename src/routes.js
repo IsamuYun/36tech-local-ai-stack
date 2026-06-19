@@ -7,6 +7,7 @@ export const PAGE_PATHS = {
   about: '/about',
   services: '/services',
   works: '/works',
+  'ai-trainer': '/works/ai-trainer.html',
   'hikvision-aem-migration': '/works/hikvision-aem-migration.html',
   'local-ai': '/local-ai',
   contact: '/contact',

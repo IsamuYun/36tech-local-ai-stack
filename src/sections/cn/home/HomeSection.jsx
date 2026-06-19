@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import AiToolsScrollDown from '../../../components/AiToolsScrollDown.jsx';
+
 import intro1 from '../../../assets/image/intro/intro-1.jpg';
 import intro2 from '../../../assets/image/intro/intro-2.jpg';
 import intro3 from '../../../assets/image/intro/intro-3.jpg';
@@ -185,13 +187,6 @@ function AiToolsIntro() {
         </Reveal>
       </div>
 
-      <div className="home-ai-container">
-        <Reveal className="home-ai-hero-cta home-ai-hero-cta-row">
-          <a className="home-ai-scroll-down" href="#ai-tools-in-focus" aria-label="滚动到聚焦内容">
-            <span aria-hidden="true" />
-          </a>
-        </Reveal>
-      </div>
     </section>
   );
 }
@@ -391,12 +386,13 @@ export default function AiToolsSection() {
   return (
     <section className="home-ai" ref={sectionRef} aria-label="AI tools field notes">
       <AiToolsIntro />
+      <AiToolsScrollDown ariaLabel="滚动到聚焦内容" />
       <AiToolsMarquee />
       <AiToolsInFocus />
       <AiToolsChatbot />
       <AiToolsTimeline />
       <AiToolsMentions />
-      
+
     </section>
   );
 }

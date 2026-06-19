@@ -1,0 +1,119 @@
+.scroll-down-button {
+  position: relative;
+  display: inline-flex;
+  width: 52px;
+  height: 96px;
+  justify-content: center;
+  color: var(--scroll-down-color, currentColor);
+  transition:
+    opacity .2s cubic-bezier(.2, 0, 0, 1),
+    transform .2s cubic-bezier(.2, 0, 0, 1);
+}
+
+.scroll-down-button:hover {
+  opacity: .58;
+  transform: translateY(2px);
+}
+
+.scroll-down-button > span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 30px;
+  height: 50px;
+  margin-left: -15px;
+  border: 2px solid currentColor;
+  border-radius: 50px;
+  box-sizing: border-box;
+}
+
+.scroll-down-button > span::before {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  border-radius: 100%;
+  background-color: currentColor;
+  box-sizing: border-box;
+  content: "";
+  animation: scrollDownMouseWheel 2s infinite;
+}
+
+.scroll-down-button::before,
+.scroll-down-button::after {
+  position: absolute;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  margin-left: -9px;
+  border-bottom: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+  box-sizing: border-box;
+  content: "";
+  transform: rotate(-45deg);
+  animation: scrollDownArrowBreath 1.8s infinite;
+}
+
+.scroll-down-button::before {
+  top: 59px;
+}
+
+.scroll-down-button::after {
+  top: 72px;
+  animation-delay: .28s;
+}
+
+.scroll-down-button:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 3px color-mix(
+    in oklab,
+    var(--scroll-down-focus-color, #ff6e42),
+    transparent 70%
+  );
+}
+
+@keyframes scrollDownMouseWheel {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+    transform: translate(0, 20px);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes scrollDownArrowBreath {
+  0% {
+    opacity: .16;
+    transform: rotate(-45deg) translate(0, 0);
+  }
+  50% {
+    opacity: .9;
+  }
+  100% {
+    opacity: .16;
+    transform: rotate(-45deg) translate(-8px, 8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-down-button {
+    transition: none;
+  }
+
+  .scroll-down-button > span::before,
+  .scroll-down-button::before,
+  .scroll-down-button::after {
+    opacity: 1;
+    animation: none;
+  }
+}

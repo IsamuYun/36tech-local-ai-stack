@@ -5,7 +5,7 @@ import { buildLocalizedPath, getLanguageToggle, getRouteState } from '../routes.
 
 const navItems = [
   { page: 'home', label: { en: 'Home', cn: '首页' }, Icon: Home },
-  { page: 'about', label: { en: 'About', cn: '关于' }, Icon: Info },
+  { page: 'about', label: { en: 'About Us', cn: '关于' }, Icon: Info },
   { page: 'services', label: { en: 'Services', cn: '服务' }, Icon: Layers3 },
   { page: 'works', label: { en: 'Works', cn: '作品' }, Icon: Album },
   { page: 'local-ai', label: { en: 'Local AI', cn: '本地 AI' }, Icon: Cpu },

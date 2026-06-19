@@ -29,6 +29,9 @@ function exposePageRoutes() {
         ['src/pages/works/index.html', 'cn/works/index.html'],
         ['src/pages/en/works/hikvision-aem-migration.html', 'en/works/hikvision-aem-migration.html'],
         ['src/pages/en/works/hikvision-aem-migration.html', 'cn/works/hikvision-aem-migration.html'],
+        ['src/pages/cn/works/ai-trainer.html', 'works/ai-trainer.html'],
+        ['src/pages/cn/works/ai-trainer.html', 'en/works/ai-trainer.html'],
+        ['src/pages/cn/works/ai-trainer.html', 'cn/works/ai-trainer.html'],
       ];
 
       await Promise.all(
@@ -56,6 +59,7 @@ export default defineConfig({
         contact: resolve(__dirname, 'src/pages/contact/index.html'),
         works: resolve(__dirname, 'src/pages/works/index.html'),
         hikvisionAemMigration: resolve(__dirname, 'src/pages/en/works/hikvision-aem-migration.html'),
+        aiTrainer: resolve(__dirname, 'src/pages/cn/works/ai-trainer.html'),
       },
     },
   },

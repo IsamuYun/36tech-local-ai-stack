@@ -10,8 +10,11 @@ import StackSection from './sections/StackSection.jsx';
 import NavBarSection from './sections/NavBarSection.jsx';
 import EnContactSection from './sections/en/contact/ContactSection.jsx';
 import CnContactSection from './sections/cn/contact/ContactSection.jsx';
-import WorksSection from './sections/cn/works/WorksSection.jsx';
-import HikvisionAemMigrationSection from './sections/en/works/HikvisionAemMigrationSection.jsx';
+import WorksSection from './sections/WorksSection.jsx';
+import CnAiTrainerCaseStudySection from './sections/cn/works/AiTrainerCaseStudySection.jsx';
+import CnHikvisionAemMigrationSection from './sections/cn/works/HikvisionAemMigrationSection.jsx';
+import EnHikvisionAemMigrationSection from './sections/en/works/HikvisionAemMigrationSection.jsx';
+import EnAiTrainerCaseStudySection from './sections/en/works/AiTrainerCaseStudySection.jsx';
 import { getRouteState } from './routes.js';
 
 function HomePage() {
@@ -111,21 +114,39 @@ function ContactPage({ language }) {
   );
 }
 
-function WorksPage() {
+function WorksPage({ language }) {
   return (
     <main className="page page-works">
       <NavBarSection />
-      <WorksSection />
+      <WorksSection language={language} />
       <FooterSection />
     </main>
   );
 }
 
-function HikvisionAemMigrationPage() {
+function HikvisionAemMigrationPage({ language }) {
+  const HikvisionAemMigrationSection = language === 'cn'
+    ? CnHikvisionAemMigrationSection
+    : EnHikvisionAemMigrationSection;
+
   return (
     <main className="page page-hikvision-aem-migration">
       <NavBarSection />
       <HikvisionAemMigrationSection />
+      <FooterSection />
+    </main>
+  );
+}
+
+function AiTrainerPage({ language }) {
+  const AiTrainerCaseStudySection = language === 'cn'
+    ? CnAiTrainerCaseStudySection
+    : EnAiTrainerCaseStudySection;
+
+  return (
+    <main className="page page-ai-trainer">
+      <NavBarSection />
+      <AiTrainerCaseStudySection />
       <FooterSection />
     </main>
   );
@@ -160,11 +181,15 @@ function App() {
   }
 
   if (currentPage === 'works') {
-    return <WorksPage />;
+    return <WorksPage language={currentRoute.language} />;
   }
 
   if (currentPage === 'hikvision-aem-migration') {
-    return <HikvisionAemMigrationPage />;
+    return <HikvisionAemMigrationPage language={currentRoute.language} />;
+  }
+
+  if (currentPage === 'ai-trainer') {
+    return <AiTrainerPage language={currentRoute.language} />;
   }
 
   return <HomePage />;

@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import AiToolsScrollDown from '../../../components/AiToolsScrollDown.jsx';
+
 import intro1 from '../../../assets/image/intro/intro-1.jpg';
 import intro2 from '../../../assets/image/intro/intro-2.jpg';
 import intro3 from '../../../assets/image/intro/intro-3.jpg';
@@ -159,7 +161,7 @@ function AiToolsIntro() {
     <section className="home-ai-section home-ai-hero" id="ai-tools-top">
       <div className="home-ai-container home-ai-hero-split">
         <Reveal className="home-ai-hero-visual" aria-label="Image gallery of independent AI toolmaking">
-          
+
           <div className="home-ai-accordion-stage">
             <p className="home-ai-eyebrow">Ways we are making a difference</p>
             <div
@@ -193,13 +195,6 @@ function AiToolsIntro() {
         </Reveal>
       </div>
 
-      <div className="home-ai-container">
-        <Reveal className="home-ai-hero-cta home-ai-hero-cta-row">
-          <a className="home-ai-scroll-down" href="#ai-tools-in-focus" aria-label="Scroll to In Focus">
-            <span aria-hidden="true" />
-          </a>
-        </Reveal>
-      </div>
     </section>
   );
 }
@@ -209,11 +204,11 @@ function AiToolsInFocus() {
     <section className="home-ai-section home-ai-in-focus" id="ai-tools-in-focus">
       <div className="home-ai-container">
         <Reveal className="home-ai-section-heading">
-          <p className="home-ai-eyebrow">In Focus</p>
+          <p className="home-ai-eyebrow">Start Here</p>
         </Reveal>
 
         <div className="home-ai-focus-grid">
-          
+
           {inFocusItems.map((item) => (
             <Reveal as="a" className="home-ai-focus-card" href={item.href} key={item.title}>
               <img src={item.image} alt="" aria-hidden="true" />
@@ -401,13 +396,18 @@ export default function HomeSection() {
 
   return (
     <section className="home-ai" ref={sectionRef} aria-label="AI tools field notes">
-      <AiToolsIntro />
-      <AiToolsMarquee />
       <AiToolsInFocus />
+      <AiToolsMarquee />
+      <AiToolsScrollDown ariaLabel="Scroll to In Focus" />
+
+
       <AiToolsChatbot />
       <AiToolsTimeline />
       <AiToolsMentions />
-      
+
     </section>
   );
 }
+
+// <AiToolsInFocus />
+// <AiToolsMarquee />
