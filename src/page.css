@@ -530,6 +530,16 @@
     transform: translateY(1px);
   }
 
+  .home-ai-btn:disabled,
+  .home-ai-input:disabled {
+    cursor: not-allowed;
+    opacity: .58;
+  }
+
+  .home-ai-btn:disabled:active {
+    transform: none;
+  }
+
   .home-ai-btn-primary {
     background: var(--home-ai-accent);
     color: var(--home-ai-accent-on);

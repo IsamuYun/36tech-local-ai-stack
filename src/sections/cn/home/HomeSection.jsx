@@ -290,8 +290,9 @@ function AiToolsChatbot() {
   const [question, setQuestion] = useState('');
   const [result, setResult] = useState('提出一个工作流、prompt 或产品问题，生成结果会显示在这里。');
   const [message, setMessage] = useState({ state: '', text: '' });
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const trimmedQuestion = question.trim();
 
@@ -300,15 +301,32 @@ function AiToolsChatbot() {
       return;
     }
 
-    setResult(
-      [
-        `问题：${trimmedQuestion}`,
-        '结果：',
-        '先明确这个工具要支持的用户决策，再定义输入上下文、输出格式，以及发布前必须验证的一个失败案例。',
-      ].join('\n\n'),
-    );
-    setMessage({ state: 'success', text: '已在本地生成结果。' });
-    setQuestion('');
+    setIsLoading(true);
+    setMessage({ state: 'loading', text: 'Gemini 正在生成回答…' });
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: trimmedQuestion, language: 'cn' }),
+      });
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok || typeof data.answer !== 'string') {
+        throw new Error(data.error || '暂时无法生成回答。');
+      }
+
+      setResult(data.answer);
+      setMessage({ state: 'success', text: 'Gemini 已生成回答。' });
+      setQuestion('');
+    } catch (error) {
+      setMessage({
+        state: 'error',
+        text: error instanceof Error ? error.message : '暂时无法生成回答。',
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -318,7 +336,7 @@ function AiToolsChatbot() {
           <div className="home-ai-chatbot-grid">
             <article className="home-ai-chatbot-result" aria-label="Chatbot 结果">
               <span className="home-ai-meta home-ai-num">RESULT</span>
-              <div className="home-ai-chatbot-output" aria-live="polite">
+              <div className="home-ai-chatbot-output" aria-live="polite" aria-busy={isLoading}>
                 {result.split('\n').map((line, index) => (
                   <p key={`${line}-${index}`}>{line || '\u00a0'}</p>
                 ))}
@@ -333,13 +351,15 @@ function AiToolsChatbot() {
                   id="ai-tools-question-cn"
                   name="question"
                   placeholder="我应该如何评估一个新的 AI 工作流？"
+                  maxLength={2000}
                   required
+                  disabled={isLoading}
                   value={question}
                   onChange={(event) => setQuestion(event.target.value)}
                 />
               </div>
-              <button className="home-ai-btn home-ai-btn-primary" type="submit">
-                Submit
+              <button className="home-ai-btn home-ai-btn-primary" type="submit" disabled={isLoading}>
+                {isLoading ? '生成中…' : '询问 Gemini'}
               </button>
               <p className="home-ai-form-message" data-state={message.state} aria-live="polite">
                 {message.text}
