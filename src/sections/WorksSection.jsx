@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, Clock } from 'lucide-react';
 
 import SystemMigration from '../assets/image/works/system-migration.jpg';
+import AiWorker from '../assets/image/works/ai-worker.jpeg';
 import intro1 from '../assets/image/intro/intro-1.jpg';
 import intro2 from '../assets/image/intro/intro-2.jpg';
 import intro3 from '../assets/image/intro/intro-3.jpg';
@@ -22,6 +23,15 @@ const worksContent = {
         duration: '项目样本',
         imageAlt: '带有代码面板的 AI Worker 工作台界面',
         page: 'hikvision-aem-migration',
+      },
+      {
+        id: 'ai-trainer',
+        title: 'AI-Trainer：用真实项目把 AI 工具练成团队能力',
+        category: '企业 AI 培训',
+        summary: '用 12 周完成企业知识库与 AI Chatbot 的真实交付，让团队在项目推进中掌握 Claude Code、Cursor、RAG 和 Prompt 工程。',
+        duration: '12 周案例',
+        imageAlt: '开发者使用 AI 工具构建企业知识库与 Chatbot',
+        page: 'ai-trainer',
       },
       {
         id: 'local-ai-stack',
@@ -68,6 +78,15 @@ const worksContent = {
         page: 'hikvision-aem-migration',
       },
       {
+        id: 'ai-trainer',
+        title: 'AI-Trainer: build delivery-ready AI capability through a real project',
+        category: 'Enterprise AI Training',
+        summary: 'A 12-week delivery track where teams build an enterprise knowledge base and AI Chatbot while learning Claude Code, Cursor, RAG, and prompt engineering in practice.',
+        duration: '12-week case study',
+        imageAlt: 'Developer using AI tools to build an enterprise knowledge base and Chatbot',
+        page: 'ai-trainer',
+      },
+      {
         id: 'local-ai-stack',
         title: 'Local AI Stack: a maintainable deployment path for small teams',
         category: 'Local Deployment',
@@ -100,6 +119,7 @@ const worksContent = {
 
 const workImages = {
   'ai-worker': SystemMigration,
+  'ai-trainer': AiWorker,
   'local-ai-stack': intro1,
   'healthcare-flow': intro2,
   'freight-board': intro3,
