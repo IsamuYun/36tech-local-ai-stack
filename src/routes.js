@@ -7,8 +7,8 @@ export const PAGE_PATHS = {
   about: '/about',
   services: '/services',
   works: '/works',
-  'ai-trainer': '/works/ai-trainer.html',
-  'hikvision-aem-migration': '/works/hikvision-aem-migration.html',
+  'ai-trainer': '/works/ai-trainer',
+  'hikvision-aem-migration': '/works/hikvision-aem-migration',
   'local-ai': '/local-ai',
   contact: '/contact',
 };
@@ -32,7 +32,7 @@ export function getRouteState(pathname = '/') {
       ? cleanPath
       : `/${segments.slice(1).join('/')}`.replace(/\/+$/, '') || '/';
 
-  const normalizedPagePath = pagePath === '/home' ? '/' : pagePath;
+  const normalizedPagePath = (pagePath === '/home' ? '/' : pagePath).replace(/\.html$/, '');
   const page = PAGE_BY_PATH[normalizedPagePath] || 'home';
 
   return {
